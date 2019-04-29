@@ -1,5 +1,5 @@
 # SSPlayer
-[![License](http://img.shields.io/badge/License-MIT-green.svg?style=flat)]
+![License](http://img.shields.io/badge/License-MIT-green.svg?style=flat)
 
 
 ## 소개
