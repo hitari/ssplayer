@@ -1,26 +1,13 @@
-<<<<<<< HEAD
-# sub-video-player
+# SSPlayer
+[![License](http://img.shields.io/badge/License-MIT-green.svg?style=flat)]
 
-> An electron-vue project
 
-#### Build Setup
+## 소개
+영어 학습용 자막 검색 플레이어
+>Subtitle Searche Player
 
-``` bash
-# install dependencies
-npm install
+``` 
 
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
 
 
 ```
-
----
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
-=======
-# ssplayer
->>>>>>> e7c628df55766ae1905894874effc180ae0e1dc7
