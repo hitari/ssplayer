@@ -6,6 +6,10 @@
 영어 학습용 자막 검색 플레이어
 >Subtitle Searche Player
 
+
+![player](https://i.imgur.com/4MTq8Q6.jpg)
+
+## Build From Source
 ``` 
 git clone https://github.com/hitari/ssplayer.git
 
