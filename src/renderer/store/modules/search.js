@@ -35,6 +35,9 @@ const actions = {
 }
 
 const getters = {
+  getSearchText(state) {
+    return state.searchText;
+  }
 }
 
 export default {

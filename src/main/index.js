@@ -1,6 +1,6 @@
-import { app, BrowserWindow, webContents } from 'electron'
+import { app, BrowserWindow, webContents, ipcMain } from 'electron'
 
-const { ipcMain } = require('electron');
+// const { ipcMain } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const Subtitle = require('subtitle');
@@ -135,6 +135,11 @@ ipcMain.on('listPlayEvent', (event, arg) => {
   let db = new sqlite3.Database('./ssplayer.db');
 
   db.all("SELECT * FROM product WHERE id = ?", [arg.id], function(err, all) {
+    if(all.length <= 0){
+      event.returnValue = '';
+      return false;
+    }
+
     let subtitles = [];
     let startTime = 0;
     let endTime = 0;

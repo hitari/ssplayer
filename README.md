@@ -7,7 +7,15 @@
 >Subtitle Searche Player
 
 ``` 
+git clone https://github.com/hitari/ssplayer.git
 
+# install dependencies
+npm install
 
+# build electron application for develope
+npm run dev
+
+# build electron application for production
+npm run build
 
 ```

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import Loading from '../cmn/Loading'
 import { eventBus } from '@/main'
 const { ipcRenderer } = require('electron');
@@ -86,8 +86,10 @@ export default {
     },
     onSearchEvent() {
         // this.$refs.loading.show().then(()=>{})
-        ipcRenderer.send('onLoadDic', this.search.searchText);
-        ipcRenderer.send('listPlayEvent', target);      
+        // console.log(this.$store.getters["search/getSearchText"]);
+        let str = this.$store.getters["search/getSearchText"];
+        ipcRenderer.send('onLoadDic', str);
+        ipcRenderer.send('listPlayEvent', str);      
         this.$store.dispatch('search/searchList', null);
     },
     onListPlay(target){
