@@ -7,6 +7,7 @@
             <b-nav-item-dropdown class="electron-no-drage navbar-title-custom">
                 <!-- Using 'button-content' slot -->
                 <template slot="button-content">SSPlayer</template>
+                <b-dropdown-item v-b-modal.modal-setup>Setup...</b-dropdown-item>
                 <b-dropdown-item v-b-modal.modal-1>About...</b-dropdown-item>
                 <b-dropdown-item @click="close()">Exit...</b-dropdown-item>
             </b-nav-item-dropdown>
@@ -15,6 +16,10 @@
               <h3>SSPlayer</h3>
               <small>Version 0.1.0</small><br/>
               <p class="my-4">hitari@naver.com</p>
+            </b-modal>
+            <!-- Modal -->
+            <b-modal id="modal-setup" title="Setup">
+              <small></small>
             </b-modal>
         </b-navbar-nav>
 
@@ -45,8 +50,11 @@ export default {
     return {}
   },
   methods: {
+    popup() {
+      window.open("https://endic.naver.com/?sLn=kr", 'naver');
+    },
     minimize() {
-        remote.getCurrentWindow().minimize();
+      remote.getCurrentWindow().minimize();
     },
     minOrMaximize() {
       const currentWindow = remote.getCurrentWindow();

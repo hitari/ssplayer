@@ -5,10 +5,10 @@
       <div class="col-md-3 sidebar" style="background-color: #2b2c34;">
         <b-tabs content-class="" fill>
           <b-tab title="subtitle" active class="sidebar-custom">
-            <SearchBox class="aaa"></SearchBox>
+            <SearchBox class="sidebar-custom"></SearchBox>
           </b-tab>
           <b-tab title="playlist" class="sidebar-custom">
-            <Playlist class="" style="position: relative;height: 100%;"></Playlist>
+            <Playlist class="sidebar-custom"></Playlist>
           </b-tab>
         </b-tabs>
       </div>
@@ -42,8 +42,13 @@
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   body { font-family: 'Source Sans Pro', sans-serif; }
+  .container-fluid{
+    height: 100%;
+  }
+
   .row{
     position: relative;
+    height: 100%;
   }
 
   .video-custom {

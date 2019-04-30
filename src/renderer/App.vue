@@ -32,7 +32,19 @@
     /* border-radius: 10px; */
   }
 
+  html{
+    width: 100%;
+    height: 100%;
+  }
+
+  body{
+    width: 100%;
+    height: 100%;
+  }
+
   #app{
     overflow: hidden;
+    width: 100%;
+    height: 100%;
   }
 </style>

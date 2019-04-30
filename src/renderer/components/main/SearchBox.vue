@@ -4,7 +4,8 @@
       <b-form-input v-model="search.searchText" @keyup.enter="onSearchEvent()" size="sm" class="navbar-input-custom" placeholder="Search"></b-form-input>
       <b-button size="sm" @click="onSearchEvent()" class="navbar-button-custom my-2 my-sm-0" type="submit">Search</b-button>
     </b-input-group>
-    <b-list-group>
+
+    <b-list-group class="search-list-group-custom">
       <b-list-group-item @click="onListPlay(item)" class="search-list-custom flex-column align-items-start list-group-item-action" v-for="(item, index) in search.searchResult">
         <div class="d-flex w-100 justify-content-between">
           <small class="mb-1">{{ msToTime(item.start) }}</small>
@@ -18,6 +19,18 @@
         <!-- <small class="text-muted">Donec id elit non mi porta.</small> -->
       </b-list-group-item>
     </b-list-group>
+
+    <div class="toolbar-bottom-custom">
+      <b-button-toolbar aria-label="Toolbar with button groups">
+        <b-button-group class="mx-1">
+          <b-button size="sm" @click="onToggleDic('naver')" class="toolbar-button-custom" v-bind:class="[search.naverDic ? 'active' : '']" title="Naver 어학사전 함께 검색하기">N</b-button>
+          <b-button size="sm" @click="onToggleDic('daum')" class="toolbar-button-custom" v-bind:class="[search.daumDic ? 'active' : '']" title="Daum 어학사전 함께 검색하기">D</b-button>
+        </b-button-group>
+        <span class="toolbar-total-custom">
+          Total {{search.searchResult.length}}
+        </span>
+      </b-button-toolbar>
+    </div>
   </div>
 </template>
 
@@ -28,8 +41,15 @@ import { eventBus } from '@/main'
 const { ipcRenderer } = require('electron');
 
 export default {
+  data() {
+    return {
+    }
+  },
   components: { 
     Loading
+  },
+  created(){
+    ipcRenderer.on('onSendDic', this.onLoadDic);
   },
   computed: {
     ...mapState([
@@ -53,8 +73,21 @@ export default {
 
       return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3);
     },
+    onSendDic(e){
+    },
+    onToggleDic(target){
+      if(target == 'naver'){
+        window.open("https://endic.naver.com/", 'naver');
+      }else if(target == 'daum'){
+        window.open("https://dic.daum.net/", 'daum');
+      }
+      
+      this.$store.dispatch('search/toggleDic', target);
+    },
     onSearchEvent() {
         // this.$refs.loading.show().then(()=>{})
+        ipcRenderer.send('onLoadDic', this.search.searchText);
+        ipcRenderer.send('listPlayEvent', target);      
         this.$store.dispatch('search/searchList', null);
     },
     onListPlay(target){
@@ -81,6 +114,31 @@ export default {
 
 <style>
   /* CSS */
+  .search-list-group-custom{
+    position: absolute !important;
+    right: 0;
+    width: 100%;
+    height: calc(100% - 63px);
+    padding: 0 !important;
+    overflow-y: auto;
+  }
+
+  .toolbar-bottom-custom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #2a2731;
+    border-top: 1px solid #000;
+  }
+
+  .navbar-input-custom{
+    background-color: #2b2c34!important;
+    border: 1px solid #2b2c34!important;
+    border-radius: 0!important;
+    margin: 0 !important;
+    color: #a9aabe!important;
+  }
+
   .navbar-input-custom{
     background-color: #2b2c34!important;
     border: 1px solid #2b2c34!important;

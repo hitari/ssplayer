@@ -1,20 +1,18 @@
 <template>
-  <div class="hello">
+  <div class="video-box-custom">
     <!-- 비디오 영역 -->
-    <div style="position:relative;">
-      <video-player  class="video-js vjs-default-skin"
-                      style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;"
-                      ref="videoPlayer"
-                      :options="playerOptions"
-                      :playsinline="true"
-                      customEventName="customstatechangedeventname"
-                      
+    <video-player  class="video-js vjs-default-skin"
+                    style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;"
+                    ref="videoPlayer"
+                    :options="playerOptions"
+                    :playsinline="true"
+                    customEventName="customstatechangedeventname"
+                    
 
-                      @play="onPlayerPlay($event)"
-                      @loadeddata="onPlayerLoadeddata($event)"
-                      @ready="playerReadied">
-      </video-player>
-    </div>
+                    @play="onPlayerPlay($event)"
+                    @loadeddata="onPlayerLoadeddata($event)"
+                    @ready="playerReadied">
+    </video-player>
   </div>
 </template>
 
@@ -45,10 +43,10 @@ export default {
     return {
       playerOptions: {
         // videojs options
-        // fluid: true,
+        fluid: true,
         muted: false,
-        width:'800',
-        height: '450',
+        // width:'800',
+        // height: '450',
         language: 'en',
         playbackRates: [0.5, 0.7, 1.0, 1.5, 2.0],
         sources: [],
@@ -115,5 +113,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .video-box-custom{
+    position:relative;
+    height:100%;
+  }
 </style>

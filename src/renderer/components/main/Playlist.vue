@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-list-group class="list-group-custom">
-      <b-list-group-item @click="onClickList(item)" class="search-list-custom flex-column align-items-start list-group-item-action" v-bind:class="[item.active ? 'active' : 'aaaa']" v-for="(item, index) in playlist.list" style="width: 100%;">
+      <b-list-group-item @click="onClickList(item)" class="search-list-custom flex-column align-items-start list-group-item-action" v-bind:class="[item.active ? 'active' : '']" v-for="(item, index) in playlist.list" style="width: 100%;">
         <small class="text-muted" style="word-break: break-all;" v-bind:title="item.movie_path">{{index+1}}.&nbsp;{{ item.name }}</small>
       </b-list-group-item>
     </b-list-group>

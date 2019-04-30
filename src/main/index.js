@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, webContents } from 'electron'
 
 const { ipcMain } = require('electron');
 const fs = require('fs');
@@ -30,10 +30,11 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     width: 1066,
+    // width:1400,
     height: 480,
     useContentSize: true,
     frame: false,
-    resizable: false,
+    // resizable: false,
     webPreferences: {
       webSecurity: false
     }
@@ -46,6 +47,18 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  
+  mainWindow.webContents.on('new-window', (event, url, frameName) => {
+    event.preventDefault()
+    const win = new BrowserWindow({ width: 1100, height: 580, show: false, id: frameName })//parent: mainWindow,
+    win.webContents.closeDevTools();
+    win.setMenu(null);
+    // win.setAlwaysOnTop(true);
+    win.once('ready-to-show', () => win.show())
+    win.loadURL(url)
+    event.newGuest = win
+  });
 }
 
 function makeDb () {
@@ -72,7 +85,7 @@ app.on('ready', function(){
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
-  }
+  }0
 })
 
 app.on('activate', () => {
@@ -100,6 +113,22 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
+
+ipcMain.on('onLoadDic', (event, arg) => {
+  let result;
+  result = webContents.getAllWebContents();
+
+  for(let i = 0; i < result.length; i++){
+    if(result[i].browserWindowOptions){
+      if(result[i].browserWindowOptions.id == 'naver'){
+        result[i].loadURL('https://endic.naver.com/search.nhn?sLn=kr&isOnlyViewEE=N&query=' + arg);
+      }else if(result[i].browserWindowOptions.id == 'daum'){
+        result[i].loadURL('https://dic.daum.net/search.do?q=' + arg);
+      }
+    }
+  }
+  event.sender.send('renderTest', result);  
+});
 
 ipcMain.on('listPlayEvent', (event, arg) => {
   let sqlite3 = require('sqlite3').verbose();
