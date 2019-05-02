@@ -48,7 +48,7 @@ export default {
       if(event.target.files.length <= 0)return false;
 
       //비디오, 자막 확장자 타입
-      const videoType = ['avi', 'mp4', 'mkv', 'ogg', 'webm'];
+      const videoType = ['avi', 'mp4', 'mkv', 'ogg', 'webm', 'm4v', 'mov'];
       const subtitleType = ['smi', 'srt', 'vtt'];
 
       let movieArr = [];
