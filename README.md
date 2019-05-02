@@ -11,16 +11,8 @@
 
 추가 기능으로 현재 네이버, 다음 어학사전과 연동하여 검색어를 자막검색과 함께 동시에 어학사전결과도 확인할 수 있습니다.
 
-Developed using Electron, Vue, Vuex, Sqlite3, ffmpeg.
-
 #### Screenshots
 ![player](https://i.imgur.com/joTpSgU.jpg)
-
-
-### Latest Releases:
-
-#### Windows - v0.1.0 - [Download](https://github.com/hitari/ssplayer/releases/download/0.1.0/ssplayer.Setup.0.1.0.exe)
-
 
 ### Supported video file types
 - avi
@@ -50,3 +42,12 @@ npm run dev
 npm run build
 
 ```
+
+---
+
+### Latest Releases:
+
+#### Windows - v0.1.0 - [Download](https://github.com/hitari/ssplayer/releases/download/0.1.0/ssplayer.Setup.0.1.0.exe)
+
+### Developed using:
+Electron, Vue, Vuex, Sqlite3, ffmpeg
