@@ -9,12 +9,17 @@
 로컬 PC에있는 영화 및 자막을 등록하여 원하는 구문을 검색어를 입력하면 등록해 놓은 자막에서 해당 위치를 찾아서 영상과
 자막을 보여 주는 영어 학습용 플레이어 입니다. 
 
-추가 기능으로 현재 네이버, 다음 어학사전과 연동 하여 검색어를 자막 검색과 함께 동시에 어학사전결과도 확인할 수 있습니다.
+추가 기능으로 현재 네이버, 다음 어학사전과 연동하여 검색어를 자막검색과 함께 동시에 어학사전결과도 확인할 수 있습니다.
 
-Developed using Electron, Vue, Vuex, Slqite3, ffmpeg.
+Developed using Electron, Vue, Vuex, Sqlite3, ffmpeg.
 
 #### Screenshots
 ![player](https://i.imgur.com/joTpSgU.jpg)
+
+
+### Latest Releases:
+
+#### Windows - v0.1.0 - [Download](https://github.com/hitari/ssplayer/releases/download/0.1.0/ssplayer.Setup.0.1.0.exe)
 
 
 ### Supported video file types
