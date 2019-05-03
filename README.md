@@ -28,15 +28,20 @@
 - smi
 - vtt
 
-## Build From Source'
+## Build From Source
 ``` 
+# download source
 git clone https://github.com/hitari/ssplayer.git
 
 # install dependencies
 npm install
 
+# sqlite3 rebuild
+npm run rebuild:sqlite3
+
 # build electron application for develope
 npm run dev
+(dev build시 위에 sqlite3 rebuild 작업을 먼저 해주셔야합니다.)
 
 # build electron application for production
 npm run build
