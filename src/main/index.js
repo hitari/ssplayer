@@ -306,7 +306,7 @@ ipcMain.on('onSearchEvent', (event, arg) => {
 });
 
 function naiveSearch(h, n) {
-  var ret = [];
+  let ret = [];
 
   for (let begin = 0; begin + n.length <= h.length; ++begin) {
       let matched = true;
@@ -324,15 +324,15 @@ function naiveSearch(h, n) {
 }
 
 function parse_timestamp(s) {
-	//var match = s.match(/^(?:([0-9]{2,}):)?([0-5][0-9]):([0-5][0-9][.,][0-9]{0,3})/);
+	//let match = s.match(/^(?:([0-9]{2,}):)?([0-5][0-9]):([0-5][0-9][.,][0-9]{0,3})/);
 	// Relaxing the timestamp format:
-	var match = s.match(/^(?:([0-9]+):)?([0-5][0-9]):([0-5][0-9](?:[.,][0-9]{0,3})?)/);
+	let match = s.match(/^(?:([0-9]+):)?([0-5][0-9]):([0-5][0-9](?:[.,][0-9]{0,3})?)/);
 	if (match == null) {
 		throw 'Invalid timestamp format: ' + s;
 	}
-	var hours = parseInt(match[1] || "0", 10);
-	var minutes = parseInt(match[2], 10);
-	var seconds = parseFloat(match[3].replace(',', '.'));
+	let hours = parseInt(match[1] || "0", 10);
+	let minutes = parseInt(match[2], 10);
+	let seconds = parseFloat(match[3].replace(',', '.'));
 	return seconds + 60 * minutes + 60 * 60 * hours;
 }
 
@@ -345,17 +345,17 @@ function parse_timestamp(s) {
 // https://github.com/mozilla/vtt.js
 function quick_and_dirty_vtt_or_srt_parser(vtt) {
   console.log('--quick_and_dirty_vtt_or_srt_parser--');
-	var lines = vtt.trim().replace('\r\n', '\n').split(/[\r\n]/).map(function(line) {
+	let lines = vtt.trim().replace('\r\n', '\n').split(/[\r\n]/).map(function(line) {
 		return line.trim();
   });
   // console.log(lines);
-	var cues = [];
-	var start = null;
-	var end = null;
-	var payload = null;
-	for (var i = 0; i < lines.length; i++) {
+	let cues = [];
+	let start = null;
+	let end = null;
+	let payload = null;
+	for (let i = 0; i < lines.length; i++) {
 		if (lines[i].indexOf('-->') >= 0) {
-			var splitted = lines[i].split(/[ \t]+-->[ \t]+/);
+			let splitted = lines[i].split(/[ \t]+-->[ \t]+/);
 			if (splitted.length != 2) {
 				throw 'Error when splitting "-->": ' + lines[i];
 			}
@@ -365,7 +365,7 @@ function quick_and_dirty_vtt_or_srt_parser(vtt) {
 			end = parse_timestamp(splitted[1]);
 		} else if (lines[i] == '') {
 			if (start && end) {
-				var cue = { 'start': start, 'end': end, 'text': payload };
+				let cue = { 'start': start, 'end': end, 'text': payload };
 				cues.push(cue);
 				start = null;
 				end = null;
@@ -380,7 +380,7 @@ function quick_and_dirty_vtt_or_srt_parser(vtt) {
 		}
 	}
 	if (start && end) {
-		var cue = { 'start': start, 'end': end, 'text': payload };
+		let cue = { 'start': start, 'end': end, 'text': payload };
 		cues.push(cue);
   }
   
